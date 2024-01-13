@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+    <script defer src="main.js"></script>
   </head>
   <body>
     <main class="container">
@@ -42,8 +42,10 @@
       </div>
       <div>
         <form class="form">
-          <textarea placeholder="сообщение..."></textarea>
-          <button class="button__main">-></button>
+          <textarea placeholder="сообщение..." id="message__input"></textarea>
+          <button type="submit" class="button__main" id="button__submit">
+            ->
+          </button>
         </form>
       </div>
       <dialog id="settings">
@@ -75,6 +77,10 @@
           </form>
         </div>
       </dialog>
+      <template id="message">
+        <p></p>
+        <span class="time">18:45</span>
+      </template>
     </main>
   </body>
 </html>
