@@ -16,3 +16,8 @@ function buttonClickHandler(e) {
 }
 
 form.addEventListener("submit", buttonClickHandler);
+form.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    buttonClickHandler(event);
+  }
+});
