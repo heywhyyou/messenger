@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+  </head>
+  <body>
+    <main class="container">
+      <div class="controls">
+        <button
+          class="button__main"
+          type="button"
+          onclick="window.settings.showModal()"
+        >
+          Настройки
+        </button>
+        <button class="button__main">Выйти</button>
+      </div>
+      <div class="messages">
+        <div class="message message-out">
+          <p>Я: Добрый день!</p>
+          <span class="time">18:45</span>
+        </div>
+        <div class="message message-in">
+          <p>Собеседник: Добрый день!</p>
+          <span class="time">18:45</span>
+        </div>
+        <div class="message message-in">
+          <p>
+            Собеседник: А это второе и, кажется, оно очень длинное, чтобы
+            поместиться на одной строке
+          </p>
+          <span class="time">18:45</span>
+        </div>
+        <div class="message message-out message-sent">
+          <p>Я: Добрый день!</p>
+          <span class="time">18:45</span>
+        </div>
+      </div>
+      <div>
+        <form class="form">
+          <textarea placeholder="сообщение..."></textarea>
+          <button class="button__main">-></button>
+        </form>
+      </div>
+      <dialog id="settings">
+        <div class="container settings">
+          <div class="settings__header">
+            <span>Настройки</span>
+            <button class="button__close" onclick="window.settings.close()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+          <span>Имя в чате</span>
+          <form class="form__modal">
+            <input type="text" placeholder="Стив" class="input" />
+            <button type="submit" class="button__main">-></button>
+          </form>
+        </div>
+      </dialog>
+    </main>
+  </body>
+</html>
