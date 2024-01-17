@@ -38,11 +38,31 @@ body {
 .messages {
   display: flex;
   flex-direction: column;
-  min-height: 437px;
+  height: 437px;
   justify-content: flex-end;
-  gap: var(--gap);
+
   border: 1px solid #000;
   padding: var(--padding);
+}
+
+.messages__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  overflow-y: auto;
+}
+.messages__wrapper::-webkit-scrollbar {
+  width: 7px;
+}
+
+.messages__wrapper::-webkit-scrollbar-track {
+  background-color: purple;
+  border-radius: 8px;
+}
+
+.messages__wrapper::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 8px;
 }
 
 .message {

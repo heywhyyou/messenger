@@ -3,7 +3,11 @@ const inputText = document.getElementById(
 ) as HTMLTextAreaElement;
 const form = document.querySelector(".form") as HTMLFormElement;
 const message = document.getElementById("message") as HTMLTemplateElement;
-const messages = document.querySelector(".messages") as HTMLDivElement;
+const messages = document.querySelector(".messages__wrapper") as HTMLDivElement;
+
+function scrollToEnd() {
+  messages.scrollTop = messages.scrollHeight;
+}
 
 function buttonClickHandler(e: Event) {
   e.preventDefault();
@@ -18,6 +22,7 @@ function buttonClickHandler(e: Event) {
   const pElement = templateRoot.querySelector("p") as HTMLParagraphElement;
   pElement.textContent = `Я: ${inputText.value}`;
   messages.append(templateRoot);
+  scrollToEnd();
   inputText.value = "";
 }
 
