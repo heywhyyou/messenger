@@ -136,6 +136,14 @@ textarea {
   padding: 16px;
 }
 
+#authorization {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+}
+
 .settings {
   min-height: 319px;
   display: flex;
@@ -157,4 +165,27 @@ textarea {
 .form__modal {
   display: flex;
   gap: 5px;
+}
+
+.form__email {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.email {
+  margin-top: 50px;
+}
+
+#login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
 }

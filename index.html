@@ -79,6 +79,88 @@
           </form>
         </div>
       </dialog>
+
+      <dialog open id="authorization">
+        <div class="container settings">
+          <div class="settings__header">
+            <span>Авторизация</span>
+            <button
+              class="button__close"
+              onclick="window.authorization.close()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+          <span class="email">Почта:</span>
+          <form class="form__email">
+            <input
+              type="text"
+              placeholder="example@gmail.com"
+              class="input input__email"
+            />
+            <div class="buttons">
+              <button type="submit" class="button__main button__receive">
+                Получить код
+              </button>
+              <button
+                type="button"
+                class="button__main"
+                onclick="window.login.showModal()"
+              >
+                Ввести код
+              </button>
+            </div>
+          </form>
+        </div>
+      </dialog>
+
+      <dialog id="login">
+        <div class="container settings">
+          <div class="settings__header">
+            <span>Подтверждение</span>
+            <button class="button__close" onclick="window.login.close()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-x"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+          <span class="email">Код:</span>
+          <form class="form__email">
+            <input
+              type="text"
+              placeholder="example@gmail.com"
+              class="input input__email"
+            />
+            <button class="button__main">Войти</button>
+          </form>
+        </div>
+      </dialog>
       <template id="message">
         <p></p>
         <span class="time">18:45</span>
