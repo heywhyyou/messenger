@@ -62,6 +62,7 @@ async function getCode() {
       }),
     });
     const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.error(error);
   }
@@ -73,8 +74,3 @@ function getCodeHandler(e: Event) {
 }
 
 buttonReceive?.addEventListener("click", getCodeHandler);
-
-function loginHandler(e: Event) {
-  e.preventDefault();
-  window.login.showModal();
-}
