@@ -74,8 +74,8 @@
           </div>
           <span>Имя в чате</span>
           <form class="form__modal">
-            <input type="text" placeholder="Стив" class="input" />
-            <button type="submit" class="button__main">-></button>
+            <input type="text" placeholder="Стив" class="input input__name" />
+            <button type="submit" class="button__main button__name">-></button>
           </form>
         </div>
       </dialog>
@@ -116,11 +116,7 @@
               <button type="submit" class="button__main button__receive">
                 Получить код
               </button>
-              <button
-                type="button"
-                class="button__main"
-                onclick="window.login.showModal()"
-              >
+              <button type="button" class="button__main button__enter_code">
                 Ввести код
               </button>
             </div>
@@ -152,12 +148,8 @@
           </div>
           <span class="email">Код:</span>
           <form class="form__email">
-            <input
-              type="text"
-              placeholder="example@gmail.com"
-              class="input input__email"
-            />
-            <button class="button__main">Войти</button>
+            <input type="text" placeholder="код" class="input input__code" />
+            <button class="button__main button__signin">Войти</button>
           </form>
         </div>
       </dialog>

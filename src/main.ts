@@ -1,76 +1,90 @@
-const inputText: HTMLTextAreaElement | null =
-  document.querySelector("#message__input");
-const form: HTMLFormElement | null = document.querySelector(".form");
-const message: HTMLTemplateElement | null = document.querySelector("#message");
-const messages: HTMLDivElement | null =
-  document.querySelector(".messages__wrapper");
-const buttonReceive: HTMLButtonElement | null =
-  document.querySelector(".button__receive");
-const inputEmail: HTMLInputElement | null =
-  document.querySelector(".input__email");
+import DOM_ELEMENTS from "./dom_elements";
+import { getCode, changeName, getProfile } from "./api";
+import { getCookie, setCookie } from "typescript-cookie";
 
 function scrollToEnd() {
-  if (!messages) {
+  if (!DOM_ELEMENTS.messages) {
     return;
   }
-  messages.scrollTop = messages.scrollHeight;
+  DOM_ELEMENTS.messages.scrollTop = DOM_ELEMENTS.messages.scrollHeight;
 }
 
 function buttonClickHandler(e: Event) {
   e.preventDefault();
 
-  if (!inputText) {
+  if (!DOM_ELEMENTS.inputText) {
     return;
   }
 
-  if (!inputText.value) {
+  if (!DOM_ELEMENTS.inputText.value) {
     console.log("Напишите что-нибудь!");
     return;
   }
 
   const templateRoot = document.createElement("div") as HTMLDivElement;
   templateRoot.classList.add("message", "message-out", "message-sent");
-  const templateContent = message?.content.cloneNode(true) as HTMLElement;
+  const templateContent = DOM_ELEMENTS.message?.content.cloneNode(
+    true
+  ) as HTMLElement;
   templateRoot.append(templateContent);
   const pElement = templateRoot.querySelector("p") as HTMLParagraphElement;
-  pElement.textContent = `Я: ${inputText.value}`;
-  messages?.append(templateRoot);
+  pElement.textContent = `Я: ${DOM_ELEMENTS.inputText.value}`;
+  DOM_ELEMENTS.messages?.append(templateRoot);
   scrollToEnd();
-  inputText.value = "";
+  DOM_ELEMENTS.inputText.value = "";
 }
 
-form?.addEventListener("submit", buttonClickHandler);
-form?.addEventListener("keydown", function (event) {
+DOM_ELEMENTS.form?.addEventListener("submit", buttonClickHandler);
+DOM_ELEMENTS.form?.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     buttonClickHandler(event);
   }
 });
 
-async function getCode() {
-  if (!inputEmail) {
-    return;
-  }
-
-  try {
-    const response = await fetch("https://edu.strada.one/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: inputEmail.value,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 function getCodeHandler(e: Event) {
   e.preventDefault();
-  getCode();
+
+  if (DOM_ELEMENTS.inputEmail && DOM_ELEMENTS.inputEmail.value) {
+    getCode(DOM_ELEMENTS.inputEmail.value);
+  } else {
+    console.log("Напишите email!");
+  }
 }
 
-buttonReceive?.addEventListener("click", getCodeHandler);
+function saveCodeToCookies(code: string) {
+  setCookie("code", code);
+}
+function signInHandler(e: Event) {
+  e.preventDefault();
+
+  if (DOM_ELEMENTS.inputCode && DOM_ELEMENTS.inputCode.value) {
+    saveCodeToCookies(DOM_ELEMENTS.inputCode.value);
+    DOM_ELEMENTS.login?.close();
+    DOM_ELEMENTS.settings?.showModal();
+  } else {
+    console.log("Введите код!");
+  }
+}
+
+function enterCodeHandler(e: Event) {
+  e.preventDefault();
+  DOM_ELEMENTS.authorization?.close();
+  DOM_ELEMENTS.login?.showModal();
+}
+
+function changeNameHandler(e: Event) {
+  e.preventDefault();
+
+  if (DOM_ELEMENTS.inputName && DOM_ELEMENTS.inputName.value) {
+    changeName(DOM_ELEMENTS.inputName.value);
+    DOM_ELEMENTS.settings?.close();
+    getProfile();
+  } else {
+    console.log("Введите код!");
+  }
+}
+
+DOM_ELEMENTS.buttonReceive?.addEventListener("click", getCodeHandler);
+DOM_ELEMENTS.buttonSignIn?.addEventListener("click", signInHandler);
+DOM_ELEMENTS.buttonEnterCode?.addEventListener("click", enterCodeHandler);
+DOM_ELEMENTS.buttonName?.addEventListener("click", changeNameHandler);
