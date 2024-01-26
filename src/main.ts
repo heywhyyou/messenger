@@ -1,6 +1,6 @@
 import DOM_ELEMENTS from "./dom_elements";
 import { getCode, changeName, getProfile } from "./api";
-import { getCookie, setCookie } from "typescript-cookie";
+import { setCookie } from "typescript-cookie";
 
 function scrollToEnd() {
   if (!DOM_ELEMENTS.messages) {

@@ -30,6 +30,8 @@ export async function changeName(name: string) {
         name: name,
       }),
     });
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.error(error);
   }
