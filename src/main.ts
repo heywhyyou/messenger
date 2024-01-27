@@ -1,8 +1,9 @@
 import DOM_ELEMENTS from "./dom_elements";
-import { getCode, changeName, getProfile } from "./api";
+import { getCode, changeName, getProfile, getMessages } from "./api";
 import { setCookie } from "typescript-cookie";
+import { render } from "./render";
 
-function scrollToEnd() {
+export function scrollToEnd() {
   if (!DOM_ELEMENTS.messages) {
     return;
   }
@@ -88,3 +89,6 @@ DOM_ELEMENTS.buttonReceive?.addEventListener("click", getCodeHandler);
 DOM_ELEMENTS.buttonSignIn?.addEventListener("click", signInHandler);
 DOM_ELEMENTS.buttonEnterCode?.addEventListener("click", enterCodeHandler);
 DOM_ELEMENTS.buttonName?.addEventListener("click", changeNameHandler);
+
+getMessages();
+render();

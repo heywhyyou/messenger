@@ -52,3 +52,20 @@ export async function getProfile() {
     console.error(error);
   }
 }
+
+export async function getMessages() {
+  try {
+    const response = await fetch("https://edu.strada.one/api/messages", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("code")}`,
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data.messages;
+  } catch (error) {
+    console.error(error);
+  }
+}
