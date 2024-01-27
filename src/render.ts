@@ -27,6 +27,7 @@ export function renderSingleMessage(message: Message) {
 
 export async function render() {
   let messages = await getMessages();
+  messages = messages.reverse();
   messages.forEach(renderSingleMessage);
   scrollToEnd();
 }
