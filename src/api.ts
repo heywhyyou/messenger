@@ -20,7 +20,7 @@ export async function getCode(email: string) {
 
 export async function changeName(name: string) {
   try {
-    const response = await fetch("https://edu.strada.one/api/user", {
+    await fetch("https://edu.strada.one/api/user", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -30,8 +30,7 @@ export async function changeName(name: string) {
         name: name,
       }),
     });
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
   } catch (error) {
     console.error(error);
   }
@@ -63,7 +62,6 @@ export async function getMessages() {
       },
     });
     const data = await response.json();
-    console.log(data);
     return data.messages;
   } catch (error) {
     console.error(error);

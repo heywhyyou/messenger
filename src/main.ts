@@ -1,7 +1,8 @@
 import DOM_ELEMENTS from "./dom_elements";
-import { getCode, changeName, getProfile, getMessages } from "./api";
-import { setCookie } from "typescript-cookie";
+import { getCode, changeName, getProfile } from "./api";
+import { setCookie, getCookie } from "typescript-cookie";
 import { render } from "./render";
+import { socket } from "./socket";
 
 export function scrollToEnd() {
   if (!DOM_ELEMENTS.messages) {
@@ -10,8 +11,8 @@ export function scrollToEnd() {
   DOM_ELEMENTS.messages.scrollTop = DOM_ELEMENTS.messages.scrollHeight;
 }
 
-function buttonClickHandler(e: Event) {
-  e.preventDefault();
+function buttonClickHandler(event: Event) {
+  event.preventDefault();
 
   if (!DOM_ELEMENTS.inputText) {
     return;
@@ -22,25 +23,21 @@ function buttonClickHandler(e: Event) {
     return;
   }
 
-  const templateRoot = document.createElement("div") as HTMLDivElement;
-  templateRoot.classList.add("message", "message-out", "message-sent");
-  const templateContent = DOM_ELEMENTS.message?.content.cloneNode(
-    true
-  ) as HTMLElement;
-  templateRoot.append(templateContent);
-  const pElement = templateRoot.querySelector("p") as HTMLParagraphElement;
-  pElement.textContent = `Я: ${DOM_ELEMENTS.inputText.value}`;
-  DOM_ELEMENTS.messages?.append(templateRoot);
-  scrollToEnd();
+  console.log(DOM_ELEMENTS.inputText?.value);
+
+  socket.send(JSON.stringify({ text: DOM_ELEMENTS.inputText?.value }));
+
   DOM_ELEMENTS.inputText.value = "";
 }
 
 DOM_ELEMENTS.form?.addEventListener("submit", buttonClickHandler);
-DOM_ELEMENTS.form?.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    buttonClickHandler(event);
-  }
-});
+
+// DOM_ELEMENTS.form?.addEventListener("keydown", function (event) {
+//   if (event.key === "Enter") {
+//     console.log("lalala");
+//     buttonClickHandler(event);
+//   }
+// });
 
 function getCodeHandler(e: Event) {
   e.preventDefault();
@@ -79,7 +76,7 @@ function changeNameHandler(e: Event) {
   if (DOM_ELEMENTS.inputName && DOM_ELEMENTS.inputName.value) {
     changeName(DOM_ELEMENTS.inputName.value);
     DOM_ELEMENTS.settings?.close();
-    getProfile();
+    // getProfile();
   } else {
     console.log("Введите код!");
   }
@@ -90,5 +87,4 @@ DOM_ELEMENTS.buttonSignIn?.addEventListener("click", signInHandler);
 DOM_ELEMENTS.buttonEnterCode?.addEventListener("click", enterCodeHandler);
 DOM_ELEMENTS.buttonName?.addEventListener("click", changeNameHandler);
 
-getMessages();
 render();
