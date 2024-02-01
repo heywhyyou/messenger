@@ -1,6 +1,6 @@
 import DOM_ELEMENTS from "./dom_elements";
-import { getCode, changeName, getProfile } from "./api";
-import { setCookie, getCookie } from "typescript-cookie";
+import { getCode, changeName } from "./api";
+import { setCookie } from "typescript-cookie";
 import { render } from "./render";
 import { socket } from "./socket";
 
