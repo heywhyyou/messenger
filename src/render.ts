@@ -1,6 +1,7 @@
 import { getMessages } from "./api";
 import DOM_ELEMENTS from "./dom_elements";
 import { scrollToEnd } from "./main";
+import { getCookie } from "typescript-cookie";
 
 type Message = {
   user: {
@@ -13,7 +14,12 @@ type Message = {
 
 export function renderSingleMessage(message: Message) {
   const templateRoot = document.createElement("div") as HTMLDivElement;
-  templateRoot.classList.add("message", "message-in");
+  templateRoot.classList.add("message");
+  if (message.user.email === getCookie("email")) {
+    templateRoot.classList.add("message-out");
+  } else {
+    templateRoot.classList.add("message-in");
+  }
   const templateContent = DOM_ELEMENTS.message?.content.cloneNode(
     true
   ) as HTMLElement;

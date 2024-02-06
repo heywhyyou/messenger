@@ -14,6 +14,7 @@ type DOM_ELEMENTS = {
   buttonName: HTMLButtonElement | null;
   inputName: HTMLInputElement | null;
   buttonSubmit: HTMLButtonElement | null;
+  main: HTMLElement | null;
 };
 
 const DOM_ELEMENTS: DOM_ELEMENTS = {
@@ -32,6 +33,7 @@ const DOM_ELEMENTS: DOM_ELEMENTS = {
   buttonName: document.querySelector(".button__name"),
   inputName: document.querySelector(".input__name"),
   buttonSubmit: document.querySelector("#button__submit"),
+  main: document.querySelector(".container"),
 };
 
 export default DOM_ELEMENTS;

@@ -2,7 +2,7 @@ import DOM_ELEMENTS from "./dom_elements";
 import { getCode, changeName } from "./api";
 import { setCookie } from "typescript-cookie";
 import { render } from "./render";
-import { socket } from "./socket";
+import { sendSocket } from "./socket";
 
 export function scrollToEnd() {
   if (!DOM_ELEMENTS.messages) {
@@ -23,9 +23,7 @@ function buttonClickHandler(event: Event) {
     return;
   }
 
-  console.log(DOM_ELEMENTS.inputText?.value);
-
-  socket.send(JSON.stringify({ text: DOM_ELEMENTS.inputText?.value }));
+  sendSocket();
 
   DOM_ELEMENTS.inputText.value = "";
 }
@@ -44,6 +42,7 @@ function getCodeHandler(e: Event) {
 
   if (DOM_ELEMENTS.inputEmail && DOM_ELEMENTS.inputEmail.value) {
     getCode(DOM_ELEMENTS.inputEmail.value);
+    setCookie("email", DOM_ELEMENTS.inputEmail.value);
   } else {
     console.log("Напишите email!");
   }
@@ -76,7 +75,7 @@ function changeNameHandler(e: Event) {
   if (DOM_ELEMENTS.inputName && DOM_ELEMENTS.inputName.value) {
     changeName(DOM_ELEMENTS.inputName.value);
     DOM_ELEMENTS.settings?.close();
-    // getProfile();
+    DOM_ELEMENTS.main?.classList.add("container__active");
   } else {
     console.log("Введите код!");
   }
