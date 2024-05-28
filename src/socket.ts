@@ -9,7 +9,7 @@ function newSocket() {
     `wss://edu.strada.one/websockets?${getCookie("code")}`
   );
   socket.onmessage = function (event) {
-    renderSingleMessage(JSON.parse(event.data));
+    renderSingleMessage(true, JSON.parse(event.data));
     scrollToEnd();
     socket.close();
   };

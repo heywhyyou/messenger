@@ -1,5 +1,5 @@
 import DOM_ELEMENTS from "./dom_elements";
-import { getCode, changeName } from "./api";
+import { getCode, changeName, getMessages } from "./api";
 import { setCookie } from "typescript-cookie";
 import { render } from "./render";
 import { sendSocket } from "./socket";
@@ -8,7 +8,11 @@ export function scrollToEnd() {
   if (!DOM_ELEMENTS.messages) {
     return;
   }
+
+  console.log(DOM_ELEMENTS.messages.scrollTop);
+  console.log(DOM_ELEMENTS.messages.scrollHeight);
   DOM_ELEMENTS.messages.scrollTop = DOM_ELEMENTS.messages.scrollHeight;
+  console.log(DOM_ELEMENTS.messages.scrollTop);
 }
 
 function buttonClickHandler(event: Event) {
@@ -58,6 +62,8 @@ function signInHandler(e: Event) {
     saveCodeToCookies(DOM_ELEMENTS.inputCode.value);
     DOM_ELEMENTS.login?.close();
     DOM_ELEMENTS.settings?.showModal();
+    render();
+    scrollToEnd();
   } else {
     console.log("Введите код!");
   }
@@ -76,8 +82,15 @@ function changeNameHandler(e: Event) {
     changeName(DOM_ELEMENTS.inputName.value);
     DOM_ELEMENTS.settings?.close();
     DOM_ELEMENTS.main?.classList.add("container__active");
+    scrollToEnd();
   } else {
     console.log("Введите код!");
+  }
+}
+
+function scrollHandler() {
+  if (DOM_ELEMENTS.messages?.scrollTop === 0) {
+    render();
   }
 }
 
@@ -85,5 +98,4 @@ DOM_ELEMENTS.buttonReceive?.addEventListener("click", getCodeHandler);
 DOM_ELEMENTS.buttonSignIn?.addEventListener("click", signInHandler);
 DOM_ELEMENTS.buttonEnterCode?.addEventListener("click", enterCodeHandler);
 DOM_ELEMENTS.buttonName?.addEventListener("click", changeNameHandler);
-
-render();
+DOM_ELEMENTS.messages?.addEventListener("scroll", scrollHandler);

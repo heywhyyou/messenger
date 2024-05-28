@@ -115,6 +115,7 @@
             type="text"
             placeholder="example@gmail.com"
             class="input input__email"
+            autocomplete="email"
           />
           <div class="buttons">
             <button type="submit" class="button__main button__receive">
@@ -152,7 +153,12 @@
         </div>
         <span class="email">Код:</span>
         <form class="form__email">
-          <input type="text" placeholder="код" class="input input__code" />
+          <input
+            type="text"
+            placeholder="код"
+            name="code"
+            class="input input__code"
+          />
           <button class="button__main button__signin">Войти</button>
         </form>
       </div>
