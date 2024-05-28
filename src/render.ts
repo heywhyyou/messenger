@@ -1,6 +1,5 @@
 import { getMessages } from "./api";
 import DOM_ELEMENTS from "./dom_elements";
-import { scrollToEnd } from "./main";
 import { getCookie } from "typescript-cookie";
 
 type Message = {

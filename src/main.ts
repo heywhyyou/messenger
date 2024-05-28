@@ -1,5 +1,5 @@
 import DOM_ELEMENTS from "./dom_elements";
-import { getCode, changeName, getMessages } from "./api";
+import { getCode, changeName } from "./api";
 import { setCookie } from "typescript-cookie";
 import { render } from "./render";
 import { sendSocket } from "./socket";
