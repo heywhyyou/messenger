@@ -44,28 +44,27 @@ let totalMessagesRendered = 0;
 let endOfMessages = false;
 
 export async function render() {
-  let messages = await getMessages();
-  // messages = messages.reverse();
-
   if (endOfMessages) {
     return;
   }
 
+  const messages = await getMessages();
+
   if (totalMessagesRendered === 300) {
-    console.log("Все загружено!");
-    const endMesseges = document.createElement("div");
-    endMesseges.classList.add("messages__end");
-    endMesseges.textContent = "Вся история загружена";
-    DOM_ELEMENTS.messages?.prepend(endMesseges);
+    const endMessages = document.createElement("div");
+    endMessages.classList.add("messages__end");
+    endMessages.textContent = "Вся история загружена";
+    DOM_ELEMENTS.messages?.prepend(endMessages);
     endOfMessages = true;
     return;
   }
 
-  let messages20 = messages.slice(
+  const messages20 = messages.slice(
     totalMessagesRendered,
     totalMessagesRendered + 20
   );
+
   totalMessagesRendered += 20;
-  // messages20.forEach(renderSingleMessage(false, messages20));
+
   messages20.map((elem: Message) => renderSingleMessage(false, elem));
 }

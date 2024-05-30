@@ -4,15 +4,14 @@ import { setCookie } from "typescript-cookie";
 import { render } from "./render";
 import { sendSocket } from "./socket";
 
+//TODO: сохранять данные юзера
+
 export function scrollToEnd() {
   if (!DOM_ELEMENTS.messages) {
     return;
   }
 
-  console.log(DOM_ELEMENTS.messages.scrollTop);
-  console.log(DOM_ELEMENTS.messages.scrollHeight);
   DOM_ELEMENTS.messages.scrollTop = DOM_ELEMENTS.messages.scrollHeight;
-  console.log(DOM_ELEMENTS.messages.scrollTop);
 }
 
 function buttonClickHandler(event: Event) {
@@ -22,24 +21,14 @@ function buttonClickHandler(event: Event) {
     return;
   }
 
-  if (!DOM_ELEMENTS.inputText.value) {
-    console.log("Напишите что-нибудь!");
-    return;
-  }
+  // if (!DOM_ELEMENTS.inputText.value) {
+  //   console.log("Напишите что-нибудь!");
+  // }
 
   sendSocket();
 
   DOM_ELEMENTS.inputText.value = "";
 }
-
-DOM_ELEMENTS.form?.addEventListener("submit", buttonClickHandler);
-
-// DOM_ELEMENTS.form?.addEventListener("keydown", function (event) {
-//   if (event.key === "Enter") {
-//     console.log("lalala");
-//     buttonClickHandler(event);
-//   }
-// });
 
 function getCodeHandler(e: Event) {
   e.preventDefault();
@@ -55,6 +44,7 @@ function getCodeHandler(e: Event) {
 function saveCodeToCookies(code: string) {
   setCookie("code", code);
 }
+
 function signInHandler(e: Event) {
   e.preventDefault();
 
@@ -94,6 +84,7 @@ function scrollHandler() {
   }
 }
 
+DOM_ELEMENTS.form?.addEventListener("submit", buttonClickHandler);
 DOM_ELEMENTS.buttonReceive?.addEventListener("click", getCodeHandler);
 DOM_ELEMENTS.buttonSignIn?.addEventListener("click", signInHandler);
 DOM_ELEMENTS.buttonEnterCode?.addEventListener("click", enterCodeHandler);
