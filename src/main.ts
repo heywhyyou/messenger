@@ -21,9 +21,10 @@ function buttonClickHandler(event: Event) {
     return;
   }
 
-  // if (!DOM_ELEMENTS.inputText.value) {
-  //   console.log("Напишите что-нибудь!");
-  // }
+  if (!DOM_ELEMENTS.inputText.value) {
+    console.log("Напишите что-нибудь!");
+    return;
+  }
 
   sendSocket();
 
