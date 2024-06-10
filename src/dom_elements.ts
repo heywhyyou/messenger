@@ -15,6 +15,7 @@ type DOM_ELEMENTS = {
   inputName: HTMLInputElement | null;
   buttonSubmit: HTMLButtonElement | null;
   main: HTMLElement | null;
+  buttonDarkTheme: HTMLButtonElement | null;
 };
 
 const DOM_ELEMENTS: DOM_ELEMENTS = {
@@ -34,6 +35,7 @@ const DOM_ELEMENTS: DOM_ELEMENTS = {
   inputName: document.querySelector(".input__name"),
   buttonSubmit: document.querySelector("#button__submit"),
   main: document.querySelector(".container"),
+  buttonDarkTheme: document.querySelector(".button__dark_theme"),
 };
 
 export default DOM_ELEMENTS;

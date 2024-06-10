@@ -85,9 +85,14 @@ function scrollHandler() {
   }
 }
 
+function darkThemeHandler() {
+  DOM_ELEMENTS.main?.classList.add("dark");
+}
+
 DOM_ELEMENTS.form?.addEventListener("submit", buttonClickHandler);
 DOM_ELEMENTS.buttonReceive?.addEventListener("click", getCodeHandler);
 DOM_ELEMENTS.buttonSignIn?.addEventListener("click", signInHandler);
 DOM_ELEMENTS.buttonEnterCode?.addEventListener("click", enterCodeHandler);
 DOM_ELEMENTS.buttonName?.addEventListener("click", changeNameHandler);
 DOM_ELEMENTS.messages?.addEventListener("scroll", scrollHandler);
+DOM_ELEMENTS.buttonDarkTheme?.addEventListener("click", darkThemeHandler);
